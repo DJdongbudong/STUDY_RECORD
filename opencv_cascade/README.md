@@ -1,33 +1,33 @@
 # ubuntu 下进行的级联器训练
-# 文件
+## 文件
 root/
     neg/**.bmp
     pos/**.bmp
     opencv_createsamples
     opencv_traincascade
-# 数据设置
-## 批量改变尺寸
+## 数据设置
+### 批量改变尺寸
 ```
 for x in *.jpg; do convert -resize 256x256\! $x $x; done
 ```
-## 批量改变名字
+### 批量改变名字
 ```
 rename "s/^/image_/" x.bmp
 ```
-## 批量改变名字
+### 批量改变名字
 ```
 i=0;for x in *; do mv $x $i.bmp; let i=i+1; done
 ```
-## 批量写名字名到文件
+### 批量写名字名到文件
 ```
 ls ./neg/*.* >neg.txt
 ls ./pos/*.* >pos.txt
 ```
 
-## 修改 pos.txt >>> xx.bmp 1 x y w h <<<
+### 修改 pos.txt >>> xx.bmp 1 x y w h <<<
 
-# 数据类型转换——生成vec文件   
-## 修改样本截取大小
+## 数据类型转换——生成vec文件   
+### 修改样本截取大小
 sudo ./opencv_createsamples \
 -info pos.txt \
 -bg neg.txt \
@@ -35,8 +35,8 @@ sudo ./opencv_createsamples \
 -vec pos.vec \
 -w 40 -h 60
 
-# 数据训练 —— 重新训练时候保证model里面是空的
-## 创建 model 文件夹、样本数量、尺寸、LBP 或者　HAAR、占用内存、准确率、错误率、使用的模型
+## 数据训练 —— 重新训练时候保证model里面是空的
+### 创建 model 文件夹、样本数量、尺寸、LBP 或者　HAAR、占用内存、准确率、错误率、使用的模型
 sudo ./opencv_traincascade \
 -data model \
 -vec pos.vec -bg neg.txt \
@@ -48,7 +48,7 @@ sudo ./opencv_traincascade \
 -minHitRate 0.9999  -maxFalseAlarmRate 0.25 \
 -mode ALL
 
-# 模型读取检测
+## 模型读取检测
 模型复制到文件夹detector
 python objectdetection.py
 python objectdetection.py --image = xx.jpg
@@ -149,7 +149,7 @@ if __name__ == '__main__':
 ```
 
 
-# 训练经验
-w h 按比例
+## 训练经验
+w h 按目标比例
 storage: 看样本数量
-acceptanceRatio: 在0.0004（4×10^3）左右寻找
+acceptanceRatio: 在0.0004（4x10^3）左右寻找
