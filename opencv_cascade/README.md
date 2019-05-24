@@ -1,10 +1,15 @@
 # ubuntu 下进行的级联器训练
 ## 文件
 root/
+
     neg/**.bmp
+    
     pos/**.bmp
+    
     opencv_createsamples
+    
     opencv_traincascade
+    
 ## 数据设置
 ### 批量改变尺寸
 ```
