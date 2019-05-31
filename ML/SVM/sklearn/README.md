@@ -11,7 +11,9 @@ y = np.array([2, 2, 0, 0, 1, 1, 1, 1, 1, 1])
 ```
 python train.py
 ```
+![image](https://github.com/DJdongbudong/STUDY_RECORD/blob/master/ML/SVM/sklearn/svm_class2_sklearn.png)
 # 预测：
 ```
 python predict.py
 ```
+
